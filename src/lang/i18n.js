@@ -1,0 +1,1003 @@
+import i18n from "i18next";
+import { initReactI18next } from "react-i18next";
+
+import Backend from "i18next-http-backend";
+import LanguageDetector from "i18next-browser-languagedetector";
+// don't want to use this?
+// have a look at the Quick start guide
+// for passing in lng and translations on init
+
+const resources = {
+  en: {
+    translation: {
+      submit: "Submit",
+      save: "Save",
+      cancel: "Cancel",
+      metres: "m",
+
+      // header
+      header__home: "Home",
+      header__search: "Search",
+      header__forum: "Forum",
+      header__support: "Support",
+      header__profile: "Profile",
+      header__signOut: "Sign out",
+      header__login: "Login",
+
+      // footer
+      footer__aboutUs: "About us",
+      footer__license: "License",
+      footer__forum: "Forum",
+      footer__contactUs: "Contact us",
+
+      //login page
+      login__welcomeBack: "Welcome Back",
+      login__loginToAccessAccount:
+        "Login to access your account and continue your journey with us.",
+      login__loginHeader: "Login",
+      login__enterCredentials: "Enter your credentials to access your account.",
+      login__emailAddress: "Email Address",
+      login__enterEmail: "Enter your email",
+      login__password: "Password",
+      login__enterPassword: "Enter your password",
+      login__rememberMe: "Remember me",
+      login__loginButton: "Login",
+      login__noAccount: "Don't have an account? ",
+      login__signUp: "Sign up",
+      login__incorrectCredentials:
+        "Credentials are incorrect. Please try again.",
+      login__checkFields:
+        "Please check that you have filled up all fields correctly.",
+
+      //signup page
+      signup__joinParkingCommunity: "Join Our Parking Community",
+      signup__connectEasyAccessBody:
+        "Connect and have easy access to carparks in Singapore",
+      signup__alreadyHaveAccount: "Already have an account? ",
+      signup__signIn: "Sign in",
+      signup__createAccountHeader: "Create Account",
+      signup__fillInDetailsBody: "Fill in your details to get started.",
+      signup__emailAddress: "Email Address",
+      signup__enterEmail: "Enter your email",
+      signup__carPlateNumber: "Car Plate Number",
+      signup__enterCarPlate: "Enter plate number",
+      signup__format: "Format: ABC-1234",
+      signup__name: "Name",
+      signup__enterName: "Enter Name",
+      signup__username: "Username",
+      signup__enterUsername: "Choose a username",
+      signup__password: "Password",
+      signup__createPassword: "Create a password",
+      signup__p8Characters: "Password must be at least 8 characters long.",
+      signup__pSpecialCharacter:
+        "Password must include at least one special character.",
+      signup__pOneNumber: "Password must contain at least one number.",
+      signup__pOneUppercase:
+        "Password must have at least one uppercase letter.",
+      signup__pOneLowercase:
+        "Password must have at least one lowercase letter.",
+      signup__agree: "I agree to the ",
+      signup__termsOfService: "Terms of Service ",
+      signup__and: "and ",
+      signup__privacyPolicy: "Privacy Policy.",
+      signup__createAccountButton: "Create Account",
+      signup__error: "An error occurred. Please try again later.",
+
+      //homepage
+      home__welcomeToParkSmart: "Welcome to ParkSmart, ",
+      home__manageParkingExpEfficiently:
+        "Manage your parking experience efficiently with our smart parking solutions.",
+      home__quickAccess: "Quick Access",
+      home__myProfile: "My Profile",
+      home__viewAndManage:
+        "View and manage your account settings and preferences.",
+      home__carparkSearch: "Carpark Search",
+      home__findAndNavigate: "Find and navigate to available parking spaces.",
+      home__forum: "Forum",
+      home__connectAndShare: "Connect with other users and share insights.",
+      home__provideFeedback: "Provide Feedback",
+      home__shareExperience: "Share your experience and help us improve.",
+      home__about: "About",
+      home__discoverOurMission: "Discover our mission and impact.",
+      home__license: "License",
+      home__termsAndConditions:
+        "View the terms and conditions governing the use of our services.",
+      home__access: "Access",
+
+      //profile page
+      profile__profileSettingsHeader: "Profile Settings",
+      profile__userID: "User ID: ",
+      profile__carPlate: "Car Plate: ",
+      profile__emailAddress: "Email Address: ",
+      profile__lastLogin: "Last login: ",
+      profile__todayAt: "Today at ",
+      profile__changeButton: "Change",
+      profile__securitySettings: "Security Settings",
+      profile__changePassword: "Change Password",
+      profile__updatePasswordRegularly: "Update your password regularly",
+      profile__twoFactorAuth: "Two-factor Authentication",
+      profile__addExtraLayerSecurity: "Add an extra layer of security",
+      profile__enableButton: "Enable",
+      profile__accountActions: "Account actions",
+      profile__logout: "Logout",
+      profile__deleteAccount: "Delete Account",
+      profile__editProfile: "Edit Profile",
+      profile__saveChanges: "Save Changes",
+      profile__editPassword: "Edit Password",
+      profile__currentPassword: "Current Password",
+      profile__currentPasswordPlaceholder: "Current password",
+
+      //feedback page
+      feedback__howCanWeHelpYou: "How can we help you?",
+      feedback__searchArticles: "Search for help articles...",
+      feedback__searchButton: "Search",
+      feedback__fAQs: "FAQs",
+      feedback__findQuickAnswers:
+        "Find quick answers to common questions about parking and our service.",
+      feedback__emailSupport: "Email Support",
+      feedback__getInTouch:
+        "Get in touch with our suport team via email for detailed assistance.",
+      feedback__phoneSupport: "Phone Support",
+      feedback__speakDirectly:
+        "Speak directly with our customer service representatives.",
+      feedback__frequentlyAskedQns: "Frequently Asked Questions",
+      feedback__howFrequentDataUpdatedQ:
+        "How frequently is the carpark availability data uploaded?",
+      feedback__howFrequentDataUpdatedA:
+        "Availability is updated every minute, subject to the responsiveness and availability of the API.",
+      feedback__storeUserDataAndLocationAccessQ:
+        "Do you store user data, and why do your request location access?",
+      feedback__storeUserDataAndLocationAccessA:
+        "We securely store user credentials using industry-standard encryption methods like bcrypt. We request location access solely to enhance user experience, allowing us to default to your current location when you access the search page. This location data is not stored.",
+      feedback__carparkAvailabilityErrorQ:
+        "Why does the carpark availability data sometimes return errors?",
+      feedback__carparkAvailabilityErrorA:
+        "Not all carparks are included in the carpark availability API, particularly older ones, which may result in missing or incomplete availability data for those carparks.",
+      feedback__sendUsFeedback: "Send Us Your Feedback",
+      feedback__weValueInput:
+        "We value your input! Please share your thoughts, suggestions or concerns with us.",
+      feedback__name: "Name",
+      feedback__email: "Email",
+      feedback__subject: "Subject",
+      feedback__selectSubject: "Select a subject",
+      feedback__message: "Message",
+      feedback__rateService: "How would you rate our service? (1-5)",
+      feedback__submitFeedbackButton: "Submit Feedback",
+      feedback__question: "Question",
+      feedback__suggestion: "Suggestion",
+      feedback__problem: "Report a Problem",
+      feedback__other: "Other",
+
+      // forum page
+      forum__forum: "Forum",
+      forum__createPost: "Create a Post",
+      forum__title: "Title",
+      forum__enterTitle: "Enter title",
+      forum__content: "Content",
+      forum__writeSomething: "Write something...",
+      forum__uploadFile: "Upload File",
+      forum__createPost: "Create Post",
+      forum__posts: "Posts",
+      forum_pleaseLogin: "Please log in to create a post.",
+      forum__postedBy: "Posted by: ",
+      forum__secondsAgo: "seconds ago",
+      forum__minutesAgo: "minutes ago",
+      forum__hoursAgo: "hours ago",
+      forum__daysAgo: "days ago",
+      forum__monthsAgo: "months ago",
+      forum__yearsAgo: "years ago",
+      forum__viewPost: "View Post",
+      forum__comment: "comment",
+      forum__editPost: "Edit Post",
+      forum__deletePost: "Delete Post",
+      forum__reason: "Enter your reason for reporting the post",
+      forum__commentTitle: "Comments",
+      forum__editYourComment: "Edit your comment...",
+      forum__confirmDelete: "Are you sure you want to delete this post?",
+      forum__leaveComment: "Leave a comment...",
+      forum__pleaseLoginComment: "Please log in to comment.",
+      forum__noComments: "No comments yet.",
+      forum__yourComment: "Your comment",
+      forum__successfulCommentReport: "Comment reported successfully",
+      forum__somethingWentWrong: "Something went wrong. Please try again.",
+      forum__pleaseProvideReportReason:
+        "Please provide a reason for reporting.",
+      forum__postSuccessfulReport: "Post reported successfully",
+      forum__commentCannotEmpty: "Comment cannot be empty.",
+      forum__confirmDeleteComment:
+        "Are you sure you want to delete this comment?",
+
+      // search page
+      search__search: "Search",
+      search__searchLocation: "Search Location",
+      search__error: "Error",
+
+      search__filters: "Filters",
+      search__freeParking: "Free Parking",
+      search__onlyFreeParking: "Only free parking",
+      search__nightParking: "Night parking",
+      search__any: "Any",
+      search__availability: "Availability",
+      search__available: "Available",
+      search__limited: "Limited",
+      search__full: "Full",
+      search__heightRestriction: "Height Restrictions",
+      search__selectMinHeight: "Select minimum height (m)",
+      search__availableParkingLots: "Available Parking Lots",
+      search__distanceAway: " km away",
+      search__spotsAvailable: " spots available",
+      search__hours: "hours",
+      search__heightLimit: "Height limit",
+      search__electronicParking: "Electronic Parking",
+      search__no: "NO",
+      search__yes: "YES",
+      search__viewDetailsButton: "View Details",
+      search__show: "Show ",
+      search__carparksWord: " Carparks",
+      search__whyChooseUs: "Why Choose Us?",
+      search__findCarparksNear: "Find carparks near your destination",
+      search__viewCarparkTypes: "View carpark types and facilities",
+      search__checkRealTime: "Check real-time availability",
+      search__getNightParkingInfo: "Get night parking and height limits info",
+      search__howItWorks: "How It Works",
+      search__searchForDesired: "1. Search for your desired location.",
+      search__choosePreferred: "2. Choose your preferred parking lot.",
+      search__viewRealTime: "3. View Real Time Availability",
+      search__needHelp: "Need Help?",
+      search__haveQuestion:
+        "Have a question or need assistance? Send us a message, and we'll be happy to help!",
+      search__contactSupport: "Contact Support",
+      search__shortTermParking: "Short Term Parking: ",
+      search__carparkDecks: "Car Park Decks",
+      search__basement: "Basement",
+    },
+  },
+  zh: {
+    translation: {
+      metres: "米",
+      submit: "提交",
+      save: "保存",
+      cancel: "取消",
+
+      // header
+      header__home: "首页",
+      header__search: "搜索",
+      header__forum: "论坛",
+      header__support: "支持",
+      header__profile: "个人资料",
+      header__signOut: "登出",
+      header__login: "登录",
+
+      // footer
+      footer__aboutUs: "关于我们",
+      footer__license: "许可证",
+      footer__forum: "论坛",
+      footer__contactUs: "联系我们",
+
+      //login page
+      login__welcomeBack: "欢迎回来",
+      login__loginToAccessAccount: "登录以访问您的账户并继续您的旅程",
+      login__loginHeader: "登录",
+      login__enterCredentials: "输入您的凭据以访问您的账户",
+      login__emailAddress: "电子邮件地址",
+      login__enterEmail: "输入您的电子邮件",
+      login__password: "密码",
+      login__enterPassword: "输入密码",
+      login__rememberMe: "记住我",
+      login__loginButton: "登录",
+      login__noAccount: "还没有账户？",
+      login__signUp: "注册",
+      login__incorrectCredentials: "凭证不正确。请重试。",
+      login__checkFields: "请检查您是否已正确填写所有字段。",
+
+      //signup page
+      signup__joinParkingCommunity: "加入我们的停车社区",
+      signup__connectEasyAccessBody: "连接并轻松访问新加坡的停车场",
+      signup__alreadyHaveAccount: "已经有账户？",
+      signup__signIn: "登录",
+      signup__createAccountHeader: "创建账户",
+      signup__fillInDetailsBody: "填写您的详细信息以开始",
+      signup__emailAddress: "电子邮件地址",
+      signup__enterEmail: "输入您的电子邮件",
+      signup__carPlateNumber: "车牌号码",
+      signup__enterCarPlate: "输入车牌号码",
+      signup__format: "格式: ABC-1234",
+      signup__name: "姓名",
+      signup__enterName: "输入姓名",
+      signup__username: "用户名",
+      signup__enterUsername: "选择一个用户名",
+      signup__password: "密码",
+      signup__createPassword: "创建密码",
+      signup__p8Characters: "密码必须至少8个字符长。",
+      signup__pSpecialCharacter: "密码必须包含至少一个特殊字符。",
+      signup__pOneNumber: "密码必须包含至少一个数字。",
+      signup__pOneUppercase: "密码必须包含至少一个大写字母。",
+      signup__pOneLowercase: "密码必须至少包含一个小写字母。",
+      signup__agree: "我同意",
+      signup__termsOfService: "服务条款",
+      signup__and: "和",
+      signup__privacyPolicy: "隐私政策。",
+      signup__createAccountButton: "创建账户",
+      signup__error: "发生错误。请稍后重试。",
+
+      //homepage
+      home__welcomeToParkSmart: "欢迎来到ParkSmart，",
+      home__manageParkingExpEfficiently:
+        "通过我们的智能停车解决方案高效管理您的停车体验。",
+      home__quickAccess: "快捷访问",
+      home__myProfile: "我的资料",
+      home__viewAndManage: "查看并管理您的帐户设置和偏好。",
+      home__carparkSearch: "停车场搜索",
+      home__findAndNavigate: "找到并导航到可用的停车位。",
+      home__forum: "论坛",
+      home__connectAndShare: "与其他用户连接并分享见解。",
+      home__provideFeedback: "提供反馈",
+      home__shareExperience: "分享您的经验，帮助我们改进。",
+      home__about: "关于",
+      home__discoverOurMission: "发现我们的使命和影响。",
+      home__license: "许可证",
+      home__termsAndConditions: "查看使用我们服务的条款和条件。",
+      home__access: "访问",
+
+      //profile page
+      profile__profileSettingsHeader: "个人资料设置",
+      profile__userID: "用户ID: ",
+      profile__carPlate: "车牌: ",
+      profile__emailAddress: "电子邮件地址: ",
+      profile__lastLogin: "最后登录: ",
+      profile__todayAt: "今天在 ",
+      profile__changeButton: "更改",
+      profile__securitySettings: "安全设置",
+      profile__changePassword: "更改密码",
+      profile__updatePasswordRegularly: "定期更新您的密码",
+      profile__twoFactorAuth: "双因素认证",
+      profile__addExtraLayerSecurity: "增加额外的安全层",
+      profile__enableButton: "启用",
+      profile__accountActions: "账户操作",
+      profile__logout: "登出",
+      profile__deleteAccount: "删除账户",
+      profile__editProfile: "编辑个人资料",
+      profile__saveChanges: "保存更改",
+      profile__editPassword: "编辑密码",
+      profile__currentPassword: "当前密码",
+      profile__currentPasswordPlaceholder: "当前密码",
+
+      //feedback page
+      feedback__howCanWeHelpYou: "我们怎么帮助您？",
+      feedback__searchArticles: "搜索帮助文章..",
+      feedback__searchButton: "搜索",
+      feedback__fAQs: "常见问题",
+      feedback__findQuickAnswers:
+        "找到关于停车和我们服务的常见问题的快速答案。",
+      feedback__emailSupport: "电子邮件支持",
+      feedback__getInTouch: "通过电子邮件与我们的支持团队联系，获取详细帮助",
+      feedback__phoneSupport: "电话支持",
+      feedback__speakDirectly: "直接与我们的客户服务代表通话。",
+      feedback__frequentlyAskedQns: "常见问题",
+      feedback__howFrequentDataUpdatedQ: "停车场可用数据多久更新一次？",
+      feedback__storeUserDataAndLocationAccessQ:
+        "您是否存储用户数据？为何请求位置访问？",
+      feedback__carparkAvailabilityErrorQ:
+        "为什么停车场可用数据有时会出现错误？",
+      feedback__howFrequentDataUpdatedA:
+        "可用性每分钟更新一次，取决于 API 的响应能力和可用性",
+      feedback__storeUserDataAndLocationAccessA:
+        "我们使用行业标准加密方法（如 bcrypt）安全地存储用户凭据。我们请求位置访问只是为了提升用户体验，当您访问搜索页面时，我们可以默认使用您的当前位置。此位置数据不会被存储。",
+      feedback__carparkAvailabilityErrorA:
+        "并非所有停车场都包含在停车场可用性 API 中，尤其是较旧的停车场，这可能会导致这些停车场的可用性数据缺失或不完整。",
+      feedback__sendUsFeedback: "向我们反馈",
+      feedback__weValueInput:
+        "我们重视您的意见！请分享您的想法、建议或关注点。",
+      feedback__name: "姓名",
+      feedback__email: "电子邮件",
+      feedback__subject: "主题",
+      feedback__selectSubject: "选择主题",
+      feedback__message: "信息",
+      feedback__rateService: "您如何评价我们的服务？（1-5）",
+      feedback__submitFeedbackButton: "提交反馈",
+      feedback__question: "问题",
+      feedback__suggestion: "建议",
+      feedback__problem: "报告问题",
+      feedback__other: "其他",
+
+      // forum page
+      forum__forum: "论坛",
+      forum__createPost: "创建帖子",
+      forum__title: "标题",
+      forum__enterTitle: "输入标题",
+      forum__content: "内容",
+      forum__writeSomething: "写点东西...",
+      forum__uploadFile: "上传文件",
+      forum__createPost: "创建帖子",
+      forum__posts: "帖子",
+      forum_pleaseLogin: "请登录以创建帖子。",
+      forum__postedBy: "发表者：",
+      forum__secondsAgo: "几秒钟前",
+      forum__minutesAgo: "分钟前",
+      forum__hoursAgo: "几小时前",
+      forum__daysAgo: "几天前",
+      forum__monthsAgo: "几个月前",
+      forum__yearsAgo: "几年前",
+      forum__viewPost: "查看帖子",
+      forum__comment: "评论",
+      forum__editPost: "编辑帖子",
+      forum__deletePost: "删除帖子",
+      forum__reason: "输入您举报帖子的原因",
+      forum__commentTitle: "评论",
+      forum__editYourComment: "编辑您的评论...",
+      forum__confirmDelete: "您确定要删除该帖子吗？",
+      forum__leaveComment: "发表评论...",
+      forum__pleaseLoginComment: "请登录后再发表评论。",
+      forum__noComments: "还没有评论。",
+      forum__yourComment: "您的评论",
+      forum__successfulCommentReport: "评论举报成功",
+      forum__somethingWentWrong: "出了点问题。请重试。",
+      forum__pleaseProvideReportReason: "请提供举报的理由。",
+      forum__postSuccessfulReport: "帖子举报成功",
+      forum__commentCannotEmpty: "评论不能为空。",
+      forum__confirmDeleteComment: "您确定要删除该评论吗？",
+
+      // search page
+      search__search: "搜索",
+      search__searchLocation: "搜索地点",
+      search__error: "错误",
+
+      search__filters: "过滤器",
+      search__freeParking: "免费停车",
+      search__onlyFreeParking: "仅限免费停车",
+      search__nightParking: "夜间停车",
+      search__any: "任何",
+      search__availability: "可用性",
+      search__available: "可用",
+      search__limited: "有限",
+      search__full: "满",
+      search__heightRestriction: "高度限制",
+      search__selectMinHeight: "选择最小高度（米）",
+      search__availableParkingLots: "可用停车位",
+      search__distanceAway: " 公里远",
+      search__spotsAvailable: " 个空位",
+      search__hours: "小时",
+      search__heightLimit: "高度限制",
+      search__electronicParking: "电子停车",
+      search__no: "没有",
+      search__yes: "是的",
+      search__viewDetailsButton: "查看详情",
+      search__show: "显示 ",
+      search__carparksWord: " 停车场",
+      search__whyChooseUs: "为什么选择我们？",
+      search__findCarparksNear: "查找目的地附近的停车场",
+      search__viewCarparkTypes: "查看停车场类型和设施",
+      search__checkRealTime: "查看实时空房情况",
+      search__getNightParkingInfo: "获取夜间停车和高度限制信息",
+      search__howItWorks: "它是如何运作的",
+      search__searchForDesired: "1. 搜索您想要的位置。",
+      search__choosePreferred: "2. 选择您喜欢的停车场。",
+      search__viewRealTime: "3. 查看实时可用情况",
+      search__needHelp: "需要帮助吗？",
+      search__haveQuestion:
+        "有疑问或需要帮助？给我们留言，我们很乐意为您提供帮助！",
+      search__contactSupport: "联系支持人员",
+      search__shortTermParking: "短期停车: ",
+      search__carparkDecks: "停车场甲板",
+      search__basement: "地下室",
+    },
+  },
+  ms: {
+    translation: {
+      metres: "m",
+      submit: "Hantar",
+      save: "Simpan",
+      cancel: "Batal",
+
+      // header
+      header__home: "Laman Utama",
+      header__search: "Cari",
+      header__forum: "Forum",
+      header__support: "Sokongan",
+      header__profile: "Profil",
+      header__signOut: "Log Keluar",
+      header__login: "Log Masuk",
+
+      // footer
+      footer__aboutUs: "Tentang Kami",
+      footer__license: "Lesen",
+      footer__forum: "Lesen",
+      footer__contactUs: "Hubungi Kami",
+
+      //login page
+      login__welcomeBack: "Selamat kembali",
+      login__loginToAccessAccount:
+        "Log masuk untuk mengakses akaun anda dan meneruskan perjalanan anda",
+      login__loginHeader: "Log Masuk",
+      login__enterCredentials:
+        "Masukkan kelayakan anda untuk mengakses akaun anda.",
+      login__emailAddress: "Alamat Emel",
+      login__enterEmail: "Masukkan emel anda",
+      login__password: "Kata Laluan",
+      login__enterPassword: "Masukkan kata laluan",
+      login__rememberMe: "Ingat saya",
+      login__loginButton: "Log Masuk",
+      login__noAccount: "Belum ada akaun? ",
+      login__signUp: "Daftar",
+      login__incorrectCredentials: "Kelayakan tidak betul. Sila cuba lagi.",
+      login__checkFields:
+        "Sila pastikan anda telah mengisi semua medan dengan betul.",
+
+      //signup page
+      signup__joinParkingCommunity: "Sertai komuniti parkir kami",
+      signup__connectEasyAccessBody:
+        "Berhubung dan dapatkan akses mudah ke tempat letak kereta di Singapura",
+      signup__alreadyHaveAccount: "Sudah ada akaun? Log masuk",
+      signup__signIn: "Log masuk",
+      signup__createAccountHeader: "Cipta Akaun",
+      signup__fillInDetailsBody: "Isi butiran anda untuk bermula",
+      signup__emailAddress: "Alamat Emel",
+      signup__enterEmail: "Masukkan emel anda",
+      signup__carPlateNumber: "Nombor Plat Kereta",
+      signup__enterCarPlate: "Masukkan Nombor Plat",
+      signup__format: "Format: ABC-1234",
+      signup__name: "Nama",
+      signup__enterName: "Masukkan Nama",
+      signup__username: "Nama Pengguna",
+      signup__enterUsername: "Pilih nama pengguna",
+      signup__password: "Kata Laluan",
+      signup__createPassword: "Cipta kata laluan",
+      signup__p8Characters:
+        "Kata laluan mesti sekurang-kurangnya 8 aksara panjang.",
+      signup__pSpecialCharacter:
+        "Kata laluan mesti mengandungi sekurang-kurangnya satu aksara khas.",
+      signup__pOneNumber:
+        "Kata laluan mesti mengandungi sekurang-kurangnya satu nombor.",
+      signup__pOneUppercase:
+        "Kata laluan mesti mengandungi sekurang-kurangnya satu huruf besar.",
+      signup__pOneLowercase:
+        "Kata laluan mesti mempunyai sekurang-kurangnya satu huruf kecil.",
+      signup__agree: "Saya bersetuju dengan ",
+      signup__termsOfService: "Terma Perkhidmatan ",
+      signup__and: "dan ",
+      signup__privacyPolicy: "Dasar Privasi.",
+      signup__createAccountButton: "Cipta Akaun",
+      signup__error: "Ralat berlaku. Sila cuba lagi kemudian.",
+
+      //homepage
+      home__welcomeToParkSmart: "Selamat datang ke ParkSmart,",
+      home__manageParkingExpEfficiently:
+        "Urus pengalaman tempat letak kereta anda dengan efisien melalui penyelesaian tempat letak kereta pintar kami.",
+      home__quickAccess: "Akses Pantas",
+      home__myProfile: "Profil Saya",
+      home__viewAndManage: "Lihat dan uruskan tetapan akaun dan pilihan anda.",
+      home__carparkSearch: "Carian Tempat Letak Kereta",
+      home__findAndNavigate:
+        "Cari dan navigasi ke ruang letak kereta yang tersedia.",
+      home__forum: "Forum",
+      home__connectAndShare:
+        "Sambung dengan pengguna lain dan kongsi pandangan.",
+      home__provideFeedback: "Berikan Maklum Balas",
+      home__shareExperience:
+        "Kongsi pengalaman anda dan bantu kami menambah baik.",
+      home__about: "Tentang",
+      home__discoverOurMission: "Terokai misi dan impak kami.",
+      home__license: "Lesen",
+      home__termsAndConditions:
+        "Lihat terma dan syarat penggunaan perkhidmatan kami.",
+      home__access: "Akses",
+
+      //profile page
+      profile__profileSettingsHeader: "Tetapan Profil",
+      profile__userID: "ID Pengguna: ",
+      profile__carPlate: "Plat Kereta: ",
+      profile__emailAddress: "Alamat E-mel: ",
+      profile__lastLogin: "Log Masuk Terakhir: ",
+      profile__todayAt: "Hari ini pada ",
+      profile__changeButton: "Tukar",
+      profile__securitySettings: "Tetapan Keselamatan",
+      profile__changePassword: "Tukar Kata Laluan",
+      profile__updatePasswordRegularly:
+        "Kemas kini kata laluan anda secara berkala",
+      profile__twoFactorAuth: "Pengesahan Dua Faktor",
+      profile__addExtraLayerSecurity: "Tambah lapisan keselamatan tambahan",
+      profile__enableButton: "Dayakan",
+      profile__accountActions: "Tindakan Akaun",
+      profile__logout: "Log Keluar",
+      profile__deleteAccount: "Padam Akaun",
+      profile__editProfile: "Edit Profil",
+      profile__saveChanges: "Simpan Perubahan",
+      profile__editPassword: "Edit Kata Laluan",
+      profile__currentPassword: "Kata Laluan Semasa",
+      profile__currentPasswordPlaceholder: "Kata laluan semasa",
+
+      //feedback page
+      feedback__howCanWeHelpYou: "Bagaimana kami boleh membantu anda?",
+      feedback__searchArticles: "Cari artikel bantuan..",
+      feedback__searchButton: "Cari",
+      feedback__fAQs: "Soalan Lazim",
+      feedback__findQuickAnswers:
+        "Dapatkan jawapan cepat untuk soalan umum mengenai tempat letak kereta dan perkhidmatan kami.",
+      feedback__emailSupport: "Sokongan E-mel",
+      feedback__getInTouch:
+        "Hubungi pasukan sokongan kami melalui e-mel untuk bantuan terperinci",
+      feedback__phoneSupport: "Sokongan Telefon",
+      feedback__speakDirectly:
+        "Bercakap terus dengan wakil khidmat pelanggan kami.",
+      feedback__frequentlyAskedQns: "Soalan Lazim",
+      feedback__howFrequentDataUpdatedQ:
+        "Seberapa kerap data ketersediaan tempat letak kereta dimuat naik?",
+      feedback__storeUserDataAndLocationAccessQ:
+        "Adakah anda menyimpan data pengguna, dan kenapa anda memerlukan akses lokasi?",
+      feedback__carparkAvailabilityErrorQ:
+        "Kenapa data ketersediaan tempat letak kereta kadang-kadang memberikan ralat?",
+      feedback__howFrequentDataUpdatedA:
+        "Ketersediaan dikemas kini setiap minit, tertakluk pada responsif dan ketersediaan API.",
+      feedback__storeUserDataAndLocationAccessA:
+        "Kami menyimpan bukti kelayakan pengguna dengan selamat menggunakan kaedah penyulitan standard industri seperti bcrypt. Kami meminta akses lokasi semata-mata untuk meningkatkan pengalaman pengguna, membolehkan kami membuat lalai ke lokasi semasa anda apabila anda mengakses halaman carian. Data lokasi ini tidak disimpan.",
+      feedback__carparkAvailabilityErrorA:
+        "Tidak semua tempat letak kereta disertakan dalam API ketersediaan tempat letak kereta, terutamanya yang lebih lama, yang mungkin menyebabkan data ketersediaan hilang atau tidak lengkap untuk tempat letak kereta tersebut.",
+      feedback__sendUsFeedback: "Hantar Maklum Balas",
+      feedback__weValueInput:
+        "Kami menghargai input anda! Sila kongsikan pendapat, cadangan, atau kebimbangan anda dengan kami.",
+      feedback__name: "Nama",
+      feedback__email: "E-mel",
+      feedback__subject: "Subjek",
+      feedback__selectSubject: "Pilih subjek",
+      feedback__message: "Mesej",
+      feedback__rateService: "Bagaimana anda menilai perkhidmatan kami? (1-5)",
+      feedback__submitFeedbackButton: "Hantar Maklum Balas",
+      feedback__question: "Soalan",
+      feedback__suggestion: "Cadangan",
+      feedback__problem: "Laporkan Masalah",
+      feedback__other: "Lain-lain",
+
+      // forum page
+      forum__forum: "Forum",
+      forum__createPost: "Buat Siaran",
+      forum__title: "Tajuk",
+      forum__enterTitle: "Masukkan tajuk",
+      forum__content: "Kandungan",
+      forum__writeSomething: "Tulis sesuatu...",
+      forum__uploadFile: "Muat Naik Fail",
+      forum__createPost: "Buat Siaran",
+      forum__posts: "Catatan",
+      forum_pleaseLogin: "Sila log masuk untuk membuat siaran.",
+      forum__postedBy: "Dihantar oleh: ",
+      forum__secondsAgo: "beberapa saat lalu",
+      forum__minutesAgo: "minit yang lalu",
+      forum__hoursAgo: "jam yang lalu",
+      forum__daysAgo: "hari yang lalu",
+      forum__monthsAgo: "bulan lalu",
+      forum__yearsAgo: "tahun lalu",
+      forum__viewPost: "Lihat Siaran",
+      forum__comment: "komen",
+      forum__editPost: "Edit Catatan",
+      forum__deletePost: "Padamkan Catatan",
+      forum__reason: "Masukkan sebab anda melaporkan siaran tersebut",
+      forum__commentTitle: "Komen",
+      forum__editYourComment: "Edit ulasan anda...",
+      forum__confirmDelete: "Adakah anda pasti mahu memadamkan siaran ini?",
+      forum__leaveComment: "Tinggalkan komen...",
+      forum__pleaseLoginComment: "Sila log masuk untuk mengulas.",
+      forum__noComments: "Tiada ulasan lagi.",
+      forum__yourComment: "Komen anda",
+      forum__successfulCommentReport: "Komen dilaporkan berjaya",
+      forum__somethingWentWrong: "Sesuatu telah berlaku. Sila cuba lagi.",
+      forum__pleaseProvideReportReason: "Sila berikan sebab untuk melaporkan.",
+      forum__postSuccessfulReport: "Catatan berjaya dilaporkan",
+      forum__commentCannotEmpty: "Komen tidak boleh kosong.",
+      forum__confirmDeleteComment:
+        "Adakah anda pasti mahu memadamkan ulasan ini?",
+
+      // search page
+      search__search: "Cari",
+      search__searchLocation: "Cari Lokasi",
+      search__error: "Ralat",
+
+      search__filters: "Penapis",
+      search__freeParking: "Tempat Letak Kereta Percuma",
+      search__onlyFreeParking: "Hanya Tempat Letak Kereta Percuma",
+      search__nightParking: "Tempat Letak Kereta Malam",
+      search__any: "Mana-mana",
+      search__availability: "Ketersediaan",
+      search__available: "Tersedia",
+      search__limited: "Terhad",
+      search__full: "Penuh",
+      search__heightRestriction: "Had Ketinggian",
+      search__selectMinHeight: "Pilih ketinggian minimum (m)",
+      search__availableParkingLots: "Lot Tempat Letak Kereta Tersedia",
+      search__distanceAway: " km jauh",
+      search__spotsAvailable: " tempat tersedia",
+      search__hours: "jam",
+      search__heightLimit: "Had Ketinggian",
+      search__electronicParking: "Tempat Letak Kereta Elektronik",
+      search__no: "TIDAK",
+      search__yes: "YA",
+      search__viewDetailsButton: "Lihat Butiran",
+      search__show: "Tunjukkan ",
+      search__carparksWord: " Tempat Letak Kereta",
+      search__whyChooseUs: "Mengapa Memilih Kami?",
+      search__findCarparksNear:
+        "Cari tempat letak kereta berhampiran destinasi anda",
+      search__viewCarparkTypes: "Lihat jenis dan kemudahan tempat letak kereta",
+      search__checkRealTime: "Semak ketersediaan masa nyata",
+      search__getNightParkingInfo:
+        "Dapatkan tempat letak kereta malam dan maklumat had ketinggian",
+      search__howItWorks: "Bagaimana Ia Berfungsi",
+      search__searchForDesired: "1. Cari lokasi yang anda inginkan.",
+      search__choosePreferred: "2. Pilih tempat letak kereta pilihan anda.",
+      search__viewRealTime: "3. Lihat Ketersediaan Masa Nyata",
+      search__needHelp: "Perlukan Bantuan?",
+      search__haveQuestion:
+        "Ada soalan atau perlukan bantuan? Hantar mesej kepada kami, dan kami berbesar hati untuk membantu!",
+      search__contactSupport: "Hubungi Sokongan",
+      search__shortTermParking: "Tempat Letak Kereta Jangka Pendek: ",
+      search__carparkDecks: "Dek Tempat Letak Kereta",
+      search__basement: "Pangsapuri Bawah Tanah",
+    },
+  },
+
+  hi: {
+    translation: {
+      metres: "मी",
+      submit: "जमा करना",
+      save: "सहेजें",
+      cancel: "रद्द करें",
+
+      // header
+      header__home: "मुखपृष्ठ",
+      header__search: "खोजें",
+      header__forum: "फ़ोरम",
+      header__support: "सहायता",
+      header__profile: "प्रोफ़ाइल",
+      header__signOut: "साइन आउट",
+      header__login: "लॉगिन",
+
+      // footer
+      footer__aboutUs: "हमारे बारे में",
+      footer__license: "लाइसेंस",
+      footer__forum: "फ़ोरम",
+      footer__contactUs: "संपर्क करें",
+
+      //login page
+      login__welcomeBack: "वापसी पर स्वागत है",
+      login__loginToAccessAccount:
+        "अपने खाते तक पहुंचने और अपनी यात्रा जारी रखने के लिए लॉग इन करें",
+      login__loginHeader: "लॉगिन",
+      login__enterCredentials:
+        "अपने खाते तक पहुंचने के लिए अपनी साख दर्ज करें।",
+      login__emailAddress: "ईमेल पता",
+      login__enterEmail: "अपना ईमेल दर्ज करें",
+      login__password: "पासवर्ड",
+      login__enterPassword: "पासवर्ड दर्ज करें",
+      login__rememberMe: "मुझे याद रखें",
+      login__loginButton: "लॉगिन",
+      login__noAccount: "खाता नहीं है? ",
+      login__signUp: "साइन अप करें",
+      login__incorrectCredentials:
+        "क्रेडेंशियल गलत हैं. कृपया पुन: प्रयास करें.",
+      login__checkFields:
+        "कृपया जाँच लें कि आपने सभी फ़ील्ड सही ढंग से भरे हैं।.",
+
+      //signup page
+      signup__joinParkingCommunity: "हमारे पार्किंग समुदाय से जुड़ें",
+      signup__connectEasyAccessBody:
+        "कनेक्ट करें और सिंगापुर में कार पार्क तक आसान पहुंच प्राप्त करें",
+      signup__alreadyHaveAccount: "पहले से खाता है? ",
+      signup__signIn: "साइन इन करें",
+      signup__createAccountHeader: "खाता बनाएं",
+      signup__fillInDetailsBody: "शुरू करने के लिए अपनी जानकारी भरें",
+      signup__emailAddress: "ईमेल पता",
+      signup__enterEmail: "अपना ईमेल दर्ज करें",
+      signup__carPlateNumber: "कार प्लेट नंबर",
+      signup__enterCarPlate: "प्लेट नंबर दर्ज करें",
+      signup__format: "प्रारूप: ABC-1234",
+      signup__name: "नाम",
+      signup__enterName: "नाम दर्ज करें",
+      signup__username: "उपयोगकर्ता नाम",
+      signup__enterUsername: "उपयोगकर्ता नाम चुनें",
+      signup__password: "पासवर्ड",
+      signup__createPassword: "पासवर्ड बनाएं",
+      signup__p8Characters: "पासवर्ड कम से कम 8 अक्षरों का होना चाहिए।",
+      signup__pSpecialCharacter:
+        "पासवर्ड में कम से कम एक विशेष वर्ण होना चाहिए।",
+      signup__pOneNumber: "पासवर्ड में कम से कम एक संख्या होनी चाहिए।",
+      signup__pOneUppercase: "पासवर्ड में कम से कम एक बड़ा अक्षर होना चाहिए।",
+      signup__pOneLowercase: "पासवर्ड में कम से कम एक छोटा अक्षर होना चाहिए",
+      signup__agree: "से सहमत हूं",
+      signup__termsOfService: "सेवा की शर्तों ",
+      signup__and: "और ",
+      signup__privacyPolicy: "गोपनीयता नीति.",
+      signup__createAccountButton: "खाता बनाएं",
+      signup__error: "ஒரு பிழை ஏற்பட்டது. பிறகு முயற்சிக்கவும்.",
+
+      //homepage
+      home__welcomeToParkSmart: "ParkSmart में आपका स्वागत है,",
+      home__manageParkingExpEfficiently:
+        "हमारी स्मार्ट पार्किंग समाधान के साथ अपनी पार्किंग अनुभव को कुशलतापूर्वक प्रबंधित करें।",
+      home__quickAccess: "त्वरित पहुँच",
+      home__myProfile: "मेरी प्रोफ़ाइल",
+      home__viewAndManage:
+        "अपनी खाता सेटिंग्स और प्राथमिकताओं को देखें और प्रबंधित करें।",
+      home__carparkSearch: "कार पार्क खोजें",
+      home__findAndNavigate: "उपलब्ध पार्किंग स्थानों को खोजें और नेविगेट करें",
+      home__forum: "फ़ोरम",
+      home__connectAndShare:
+        "अन्य उपयोगकर्ताओं से कनेक्ट करें और विचार साझा करें।",
+      home__provideFeedback: "प्रतिक्रिया दें",
+      home__shareExperience:
+        "अपने अनुभव को साझा करें और हमें सुधारने में मदद करें।",
+      home__about: "हमारे बारे में",
+      home__discoverOurMission: "हमारे मिशन और प्रभाव की खोज करें।",
+      home__license: "लाइसेंस",
+      home__termsAndConditions:
+        "हमारी सेवाओं के उपयोग के लिए नियम और शर्तें देखें।",
+      home__access: "पहुँच",
+
+      //profile page
+      profile__profileSettingsHeader: "प्रोफ़ाइल सेटिंग्स",
+      profile__userID: "उपयोगकर्ता आईडी: ",
+      profile__carPlate: "कार प्लेट: ",
+      profile__emailAddress: "ईमेल पता: ",
+      profile__lastLogin: "अंतिम लॉगिन: ",
+      profile__todayAt: "आज at ",
+      profile__changeButton: "बदलिए",
+      profile__securitySettings: "सुरक्षा सेटिंग्स",
+      profile__changePassword: "पासवर्ड बदलें",
+      profile__updatePasswordRegularly: "अपना पासवर्ड नियमित रूप से अपडेट करें",
+      profile__twoFactorAuth: "दो-कारक प्रमाणीकरण",
+      profile__addExtraLayerSecurity: "सुरक्षा का एक अतिरिक्त स्तर जोड़ें",
+      profile__enableButton: "सक्रिय करें",
+      profile__accountActions: "खाता क्रियाएँ",
+      profile__logout: "लॉगआउट",
+      profile__deleteAccount: "खाता हटाएँ",
+      profile__editProfile: "प्रोफ़ाइल संपादित करें",
+      profile__saveChanges: "परिवर्तनों को सुरक्षित करें",
+      profile__editPassword: "पासवर्ड संपादित करें",
+      profile__currentPassword: "वर्तमान पासवर्ड",
+      profile__currentPasswordPlaceholder: "वर्तमान पासवर्ड",
+
+      //feedback page
+      feedback__howCanWeHelpYou: "हम आपकी कैसे सहायता कर सकते हैं?",
+      feedback__searchArticles: "सहायता लेखों के लिए खोजें..",
+      feedback__searchButton: "खोजें",
+      feedback__fAQs: "सामान्य प्रश्न",
+      feedback__findQuickAnswers:
+        "पार्किंग और हमारी सेवा से संबंधित सामान्य प्रश्नों के त्वरित उत्तर प्राप्त करें।",
+      feedback__emailSupport: "ईमेल समर्थन",
+      feedback__getInTouch:
+        "विस्तृत सहायता के लिए हमारे समर्थन टीम से संपर्क करें",
+      feedback__phoneSupport: "फ़ोन समर्थन",
+      feedback__speakDirectly:
+        "हमारे ग्राहक सेवा प्रतिनिधियों से सीधे बात करें।",
+      feedback__frequentlyAskedQns: "अक्सर पूछे गए प्रश्न",
+      feedback__howFrequentDataUpdatedQ:
+        "कार पार्क की उपलब्धता डेटा कितनी बार अपडेट होती है?",
+      feedback__storeUserDataAndLocationAccessQ:
+        "क्या आप उपयोगकर्ता डेटा स्टोर करते हैं, और आप स्थान एक्सेस क्यों माँगते हैं?",
+      feedback__carparkAvailabilityErrorQ:
+        "कभी-कभी कार पार्क उपलब्धता डेटा में त्रुटियाँ क्यों होती हैं?",
+      feedback__howFrequentDataUpdatedA:
+        "एपीआई की प्रतिक्रियाशीलता और उपलब्धता के अधीन, उपलब्धता को हर मिनट अपडेट किया जाता है।",
+      feedback__storeUserDataAndLocationAccessA:
+        "हम bcrypt जैसे उद्योग-मानक एन्क्रिप्शन विधियों का उपयोग करके उपयोगकर्ता क्रेडेंशियल को सुरक्षित रूप से संग्रहीत करते हैं। हम केवल उपयोगकर्ता अनुभव को बेहतर बनाने के लिए स्थान एक्सेस का अनुरोध करते हैं, जिससे जब आप खोज पृष्ठ पर पहुँचते हैं तो हमें आपके वर्तमान स्थान पर डिफ़ॉल्ट रूप से जाने की अनुमति मिलती है। यह स्थान डेटा संग्रहीत नहीं किया जाता है।",
+      feedback__carparkAvailabilityErrorA:
+        "सभी कारपार्क, विशेष रूप से पुराने कारपार्क, कारपार्क उपलब्धता API में शामिल नहीं हैं, जिसके परिणामस्वरूप उन कारपार्कों के लिए उपलब्धता डेटा गायब या अपूर्ण हो सकता है।",
+      feedback__sendUsFeedback: "हमें अपनी प्रतिक्रिया भेजें",
+      feedback__weValueInput:
+        "हम आपकी राय को महत्व देते हैं! कृपया हमें अपनी विचार, सुझाव या चिंताएँ बताएं।",
+      feedback__name: "नाम",
+      feedback__email: "ईमेल",
+      feedback__subject: "विषय",
+      feedback__selectSubject: "विषय चुनें",
+      feedback__message: "संदेश",
+      feedback__rateService: "आप हमारी सेवा को किस तरह से रेट करेंगे? (1-5)",
+      feedback__submitFeedbackButton: "प्रतिक्रिया सबमिट करें",
+      feedback__question: "सवाल",
+      feedback__suggestion: "सुझाव",
+      feedback__problem: "एक समस्या का आख्या",
+      feedback__other: "अन्य",
+
+      // forum page
+      forum__forum: "मंच",
+      forum__createPost: "एक पोस्ट बनाएं",
+      forum__title: "शीर्षक",
+      forum__enterTitle: "शीर्षक दर्ज करें",
+      forum__content: "सामग्री",
+      forum__writeSomething: "कुछ लिखना...",
+      forum__uploadFile: "फ़ाइल अपलोड करें",
+      forum__createPost: "पोस्ट बनाएं",
+      forum__posts: "पदों",
+      forum_pleaseLogin: "कृपया पोस्ट बनाने के लिए लॉग इन करें.",
+      forum__postedBy: "के द्वारा प्रकाशित किया गया:",
+      forum__secondsAgo: "सेकंड पहले",
+      forum__minutesAgo: "कुछ मिनट पहले",
+      forum__hoursAgo: "घंंटों पहले",
+      forum__daysAgo: "दिन पहले",
+      forum__monthsAgo: "महीने पहले",
+      forum__yearsAgo: "साल पहले",
+      forum__viewPost: "पोस्ट देखें",
+      forum__comment: "टिप्पणी",
+      forum__editPost: "संपादित पोस्ट",
+      forum__deletePost: "पोस्ट को हटाएं",
+      forum__reason: "पोस्ट की रिपोर्ट करने का अपना कारण दर्ज करें",
+      forum__commentTitle: "टिप्पणियाँ",
+      forum__editYourComment: "अपनी टिप्पणी संपादित करें...",
+      forum__confirmDelete: "क्या आप वाकई इस पोस्ट को हटाना चाहते हैं?",
+      forum__leaveComment: "एक टिप्पणी छोड़ें...",
+      forum__pleaseLoginComment: "कृपया टिप्पणी में लॉगिन करें।",
+      forum__noComments: "अब तक कोई टिप्पणी नहीं।.",
+      forum__yourComment: "आपकी टिप्पणियां",
+      forum__successfulCommentReport: "टिप्पणी सफलतापूर्वक रिपोर्ट की गई",
+      forum__somethingWentWrong: "कुछ गड़बड़ हुई है। कृपया दोबारा प्रयास करें।",
+      forum__pleaseProvideReportReason: "कृपया रिपोर्ट करने का कारण बताएं।",
+      forum__postSuccessfulReport: "पोस्ट सफलतापूर्वक रिपोर्ट की गई",
+      forum__commentCannotEmpty: "टिप्पणी रिक्त नहीं रह सकती.",
+      forum__confirmDeleteComment:
+        "क्या आप इस कमेंट को मिटाने के बारे में पक्के हैं?",
+
+      // search page
+      search__search: "खोज",
+      search__searchLocation: "स्थान खोजें",
+      search__error: "गलती",
+
+      search__filters: "फ़िल्टर",
+      search__freeParking: "फ्री पार्किंग",
+      search__onlyFreeParking: "केवल फ्री पार्किंग",
+      search__nightParking: "रात्रि पार्किंग",
+      search__any: "कोई भी",
+      search__availability: "उपलब्धता",
+      search__available: "उपलब्ध",
+      search__limited: "सीमित",
+      search__full: "पूर्ण",
+      search__heightRestriction: "ऊंचाई प्रतिबंध",
+      search__selectMinHeight: "न्यूनतम ऊंचाई चुनें (मी)",
+      search__availableParkingLots: "उपलब्ध पार्किंग स्थल",
+      search__distanceAway: "किमी दूर",
+      search__spotsAvailable: "स्पॉट उपलब्ध",
+      search__hours: "घंटे",
+      search__heightLimit: "ऊंचाई सीमा",
+      search__electronicParking: "इलेक्ट्रॉनिक पार्किंग",
+      search__no: "नहीं",
+      search__yes: "हाँ",
+      search__viewDetailsButton: "विवरण देखें",
+      search__show: "दिखाना ",
+      search__carparksWord: " पार्किंग स्थल",
+      search__whyChooseUs: "हमें क्यों चुनें?",
+      search__findCarparksNear: "अपने गंतव्य के निकट कार पार्क खोजें",
+      search__viewCarparkTypes: "कारपार्क के प्रकार और सुविधाएँ देखें",
+      search__checkRealTime: "वास्तविक समय उपलब्धता की जाँच करें",
+      search__getNightParkingInfo:
+        "रात्रि पार्किंग और ऊंचाई सीमा की जानकारी प्राप्त करें",
+      search__howItWorks: "यह काम किस प्रकार करता है",
+      search__searchForDesired: "1. अपना इच्छित स्थान खोजें.",
+      search__choosePreferred: "2. अपनी पसंदीदा पार्किंग स्थल चुनें।",
+      search__viewRealTime: "3. वास्तविक समय उपलब्धता देखें",
+      search__needHelp: "मदद की ज़रूरत है?",
+      search__haveQuestion:
+        "क्या आपके पास कोई प्रश्न है या आपको सहायता की आवश्यकता है? हमें संदेश भेजें, और हमें आपकी सहायता करने में खुशी होगी!",
+      search__contactSupport: "समर्थन से संपर्क करें",
+      search__shortTermParking: "संक्षिप्त अवधि पार्किंग: ",
+      search__carparkDecks: "पार्किंग डेक",
+      search__basement: "बेसमेंट",
+    },
+  },
+};
+i18n
+  // load translation using http -> see /public/locales (i.e. https://github.com/i18next/react-i18next/tree/master/example/react/public/locales)
+  // learn more: https://github.com/i18next/i18next-http-backend
+  // want your translations to be loaded from a professional CDN? => https://github.com/locize/react-tutorial#step-2---use-the-locize-cdn
+  .use(Backend)
+  // detect user language
+  // learn more: https://github.com/i18next/i18next-browser-languageDetector
+  .use(LanguageDetector)
+  // pass the i18n instance to react-i18next.
+  .use(initReactI18next)
+  // init i18next
+  // for all options read: https://www.i18next.com/overview/configuration-options
+  .init({
+    resources,
+    fallbackLng: "en",
+    debug: true,
+    interpolation: {
+      escapeValue: false, // not needed for react as it escapes by default
+    },
+  });
+
+export default i18n;
