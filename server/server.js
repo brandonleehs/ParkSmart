@@ -131,7 +131,7 @@ mongoose
 // Configure cors
 app.use(
   cors({
-    origin: "https://parksmart-backend.onrender.com",
+    origin: "http://localhost:5173",
     methods: "GET,POST,DELETE",
     credentials: true, // Allow credentials like cookies
   }),
