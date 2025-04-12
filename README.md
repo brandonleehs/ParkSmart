@@ -16,7 +16,7 @@
 
 This website aims to improve the parking experience at HDB car parks in Singapore by allowing users to view real-time availability of parking lots and access detailed information about each car park, such as location, operating hours, gantry height, night parking options and payment types.
 
-This application has been deployed on Render. You may view it [here](https://parksmart-ta1r.onrender.com/).
+This application has been deployed on Render. You may view it [here](https://parksmart-ta1r.onrender.com/). Note that due to the free payment plan, the server instance spins down with inactivity. Thus, some features such as logging in, signing up and viewing forum may be delayed.
 
 ## Technologies Used
 
