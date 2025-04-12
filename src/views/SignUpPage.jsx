@@ -69,7 +69,6 @@ export default function SignUpPage() {
             onSubmit={(e) => {
               e.preventDefault();
               signUp({ email, password, username, carPlateNumber, name });
-              console.log("HI!");
             }}
             className="grid max-w-[400px] gap-5 self-center p-4 text-start min-[600px]:max-w-[600px]"
           >

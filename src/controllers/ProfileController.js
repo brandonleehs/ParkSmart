@@ -151,11 +151,7 @@ export default class ProfileController {
     setUser,
   }) => {
     const updatedUser = { user, currentPassword, newPassword };
-    console.log(updatedUser, JSON.stringify(updatedUser));
     try {
-      console.log("entered try");
-      console.log(updatedUser);
-
       const serverUrl = process.env.SERVER_URL
         ? process.env.SERVER_URL
         : `http://localhost:${process.env.PORT}`;
@@ -187,7 +183,6 @@ export default class ProfileController {
       alert(
         `Failed to update password. Please try again. Error: ${error.message || error}`,
       );
-      console.log("after!");
     }
   };
 }

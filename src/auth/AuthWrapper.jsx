@@ -18,7 +18,6 @@ export function AuthWrapper({ children }) {
         ? process.env.SERVER_URL
         : `http://localhost:${process.env.PORT}`;
 
-      console.log(serverUrl);
       fetch(`${serverUrl}/api/auth/verify`, {
         method: "POST",
         headers: {

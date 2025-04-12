@@ -64,7 +64,6 @@ export default function SearchPage() {
         });
     } else {
       authToken = process.env.ONEMAP_API_KEY;
-      console.log("DID NOT CALL SERVER!");
     }
 
     const timeoutId = setTimeout(() => {

@@ -19,11 +19,13 @@ export default function Forum() {
   const { t } = useTranslation();
 
   useEffect(() => {
+    console.log("ran", process.env.SERVER_URL);
     // Fetch posts from the backend
     const serverUrl = process.env.SERVER_URL
       ? process.env.SERVER_URL
       : `http://localhost:${process.env.PORT}`;
 
+    console.log(serverUrl);
     axios
       .get(`${serverUrl}/api/posts`)
       .then((res) => setPosts(res.data))

@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 
         // Request feedback data from the backend API using Axios
         const response = await axios.get(`${serverUrl}/api/feedbacks`);
-        console.log(response.data); // Debugging to verify response structure
+
         setFeedbackData(response.data || []); // Safeguard: default to empty array if response is invalid
       } catch (err) {
         console.error("Error fetching feedback:", err);
@@ -48,7 +48,7 @@ const AdminDashboard = () => {
           : `http://localhost:${process.env.PORT}`;
 
         const response = await axios.get(`${serverUrl}/api/reports`);
-        console.log(response.data); // Debugging to verify response structure
+
         setReports(response.data || []); // Safeguard: default to empty array if response is invalid
       } catch (err) {
         console.error("Error fetching reports:", err);

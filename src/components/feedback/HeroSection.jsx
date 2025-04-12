@@ -7,7 +7,6 @@ const HeroSection = () => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("Searching for:", searchTerm);
   };
 
   return (
