@@ -47,7 +47,14 @@ function setEnvValue(key, value) {
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+// Configure cors
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: "GET,POST,DELETE,PUT",
+    credentials: true, // Allow credentials like cookies
+  }),
+);
 
 // Increase limit for JSON payloads
 app.use(express.json({ limit: "10mb" })); // Increase the limit as needed (e.g., 10mb)
@@ -127,15 +134,6 @@ mongoose
         process.exit(1); // Exit if the connection fails
       });
   });
-
-// Configure cors
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    methods: "GET,POST,DELETE",
-    credentials: true, // Allow credentials like cookies
-  }),
-);
 
 // Import models
 const Post = require("../src/models/Post.jsx");
