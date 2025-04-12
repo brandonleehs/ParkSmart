@@ -9,6 +9,7 @@ import Comment from "../components/Comment";
 import { LangContext } from "../lang/LangWrapper";
 import { useTranslation } from "react-i18next";
 import ForumController from "../controllers/ForumController";
+import LoadingPage from "./LoadingPage";
 
 export default function PostDetail() {
   const { t } = useTranslation();
@@ -274,7 +275,7 @@ export default function PostDetail() {
       });
   };
 
-  if (!post) return <p className="dark:text-white">Loading...</p>;
+  if (!post) return <LoadingPage text="Loading..."></LoadingPage>;
 
   return (
     <>
