@@ -1,7 +1,7 @@
 import Header from "../components/Header.jsx";
 import { AuthContext } from "../auth/AuthWrapper.jsx";
 import { useState, useContext, useEffect, useRef, useReducer } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SearchResult from "../components/SearchResult.jsx";
 import DisplayResult from "../components/DisplayResult.jsx";
 import { getDistance } from "geolib";

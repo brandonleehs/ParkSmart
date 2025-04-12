@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { useTranslation } from "react-i18next";
 import FeedbackController from "../../controllers/FeedbackController";
 

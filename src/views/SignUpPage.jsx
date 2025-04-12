@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../auth/AuthWrapper";
 import PasswordChecklist from "react-password-checklist";
 import "../styles/SignUpPage.css";
-import Title from "../components/Title";
 import Header from "../components/Header";
 import { useTranslation } from "react-i18next";
 import Footer from "../components/Footer";

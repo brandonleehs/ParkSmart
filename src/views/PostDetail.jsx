@@ -4,7 +4,6 @@ import axios from "axios";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { AuthContext } from "../auth/AuthWrapper";
-import imageCompression from "browser-image-compression";
 import Comment from "../components/Comment";
 import { LangContext } from "../lang/LangWrapper";
 import { useTranslation } from "react-i18next";

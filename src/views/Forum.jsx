@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../auth/AuthWrapper";
-import imageCompression from "browser-image-compression";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ForumCard from "../components/ForumCard";
