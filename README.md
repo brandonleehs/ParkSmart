@@ -69,7 +69,7 @@ echo ONEMAP_EMAIL="brandon02.lee@gmail.com" >> .env
 echo ONEMAP_PASSWORD="WQ!*PJwF7a#k*@" >> .env
 echo JWT_SECRET=123456 >> .env
 echo JWT_EXPIRATION=1h >> .env
-echo PORT=3000 >>.env
+echo PORT=3000 >> .env
 ```
 
 ### 5. Start the application
