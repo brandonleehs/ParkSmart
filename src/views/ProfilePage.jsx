@@ -227,15 +227,16 @@ const ProfileSettings = () => {
                   setUser(null);
                   navigate("/login");
 
-                  const response = await fetch(
-                    `http://localhost:${process.env.PORT}/logout`,
-                    {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
+                  const serverUrl = process.env.SERVER_URL
+                    ? process.env.SERVER_URL
+                    : `http://localhost:${process.env.PORT}`;
+
+                  const response = await fetch(`${serverUrl}/logout`, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
                     },
-                  );
+                  });
                 } catch (err) {
                   console.log(err);
                 }

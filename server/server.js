@@ -144,6 +144,15 @@ const AboutMission = require("../src/models/AboutMission.jsx");
 
 // API Routes
 
+app.get("/api/onemap", (req, res) => {
+  const apiKey = process.env.ONEMAP_API_KEY;
+
+  if (!apiKey) {
+    return res.status(500).json({ error: "API key not configured" });
+  }
+
+  res.status(200).json({ apiKey });
+});
 // Route to update About and Mission
 app.put("/api/about-mission/update", async (req, res) => {
   const { aboutText, missionText } = req.body;

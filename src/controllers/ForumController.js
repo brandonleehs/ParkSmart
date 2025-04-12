@@ -29,8 +29,12 @@ export default class ForumController {
       formData.append("image", image); // Send the compressed file
     }
 
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .post(`http://localhost:${process.env.PORT}/api/posts`, formData, {
+      .post(`${serverUrl}/api/posts`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {

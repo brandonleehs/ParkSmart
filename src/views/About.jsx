@@ -15,16 +15,17 @@ export default function About() {
 
   const handleSave = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:${process.env.PORT}/api/about-mission/update`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ aboutText, missionText }),
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
+      const response = await fetch(`${serverUrl}/api/about-mission/update`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({ aboutText, missionText }),
+      });
 
       const data = await response.json();
 
@@ -43,7 +44,11 @@ export default function About() {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:${process.env.PORT}/api/about-mission/get`, {
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
+    fetch(`${serverUrl}/api/about-mission/get`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

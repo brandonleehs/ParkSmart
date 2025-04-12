@@ -51,7 +51,21 @@ export default function SearchPage() {
       setSearchResults([]);
       return;
     }
-    const authToken = process.env.ONEMAP_API_KEY;
+    let authToken = "";
+
+    if (process.env.SERVER_URL) {
+      getOneMapApiKey()
+        .then((apiKey) => {
+          authToken = apiKey;
+        })
+        .catch((error) => {
+          // Handle any error that occurred during the process
+          console.error("Error retrieving OneMap API key:", error);
+        });
+    } else {
+      authToken = process.env.ONEMAP_API_KEY;
+      console.log("DID NOT CALL SERVER!");
+    }
 
     const timeoutId = setTimeout(() => {
       searchPageController.fetchQuery(query, authToken, setSearchResults);
@@ -428,3 +442,22 @@ function toTitleCase(text) {
     (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase(),
   );
 }
+
+const getOneMapApiKey = async () => {
+  try {
+    const response = await fetch(`${process.env.SERVER_URL}/api/onemap`, {
+      method: "GET",
+      credentials: "include", // include cookies if auth is required
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch API key");
+    }
+
+    const data = await response.json();
+    return data.apiKey;
+  } catch (error) {
+    console.error("Error retrieving OneMap API key:", error);
+    return null;
+  }
+};

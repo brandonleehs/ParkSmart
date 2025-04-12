@@ -20,15 +20,15 @@ export default class FeedbackController {
         ...formData,
       };
 
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
       // Send feedback to server
       axios
-        .post(
-          `http://localhost:${process.env.PORT}/api/feedback`,
-          newFeedback,
-          {
-            headers: { "Content-Type": "application/json" },
-          },
-        )
+        .post(`${serverUrl}/api/feedback`, newFeedback, {
+          headers: { "Content-Type": "application/json" },
+        })
         .then((res) => {
           console.log(res.data);
         })

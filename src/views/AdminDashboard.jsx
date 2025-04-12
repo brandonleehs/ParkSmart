@@ -21,10 +21,12 @@ const AdminDashboard = () => {
     const fetchFeedbackData = async () => {
       setLoading(true);
       try {
+        const serverUrl = process.env.SERVER_URL
+          ? process.env.SERVER_URL
+          : `http://localhost:${process.env.PORT}`;
+
         // Request feedback data from the backend API using Axios
-        const response = await axios.get(
-          `http://localhost:${process.env.PORT}/api/feedbacks`,
-        );
+        const response = await axios.get(`${serverUrl}/api/feedbacks`);
         console.log(response.data); // Debugging to verify response structure
         setFeedbackData(response.data || []); // Safeguard: default to empty array if response is invalid
       } catch (err) {
@@ -41,9 +43,11 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:${process.env.PORT}/api/reports`,
-        );
+        const serverUrl = process.env.SERVER_URL
+          ? process.env.SERVER_URL
+          : `http://localhost:${process.env.PORT}`;
+
+        const response = await axios.get(`${serverUrl}/api/reports`);
         console.log(response.data); // Debugging to verify response structure
         setReports(response.data || []); // Safeguard: default to empty array if response is invalid
       } catch (err) {

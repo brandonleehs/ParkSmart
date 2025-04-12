@@ -11,16 +11,17 @@ export default class LoginController {
     setError(false);
 
     try {
-      const response = await fetch(
-        `http://localhost:${process.env.PORT}/api/auth/login`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
+      const response = await fetch(`${serverUrl}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await response.json();
 

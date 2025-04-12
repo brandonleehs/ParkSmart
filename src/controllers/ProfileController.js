@@ -15,16 +15,17 @@ export default class ProfileController {
       setIsDeleting(true); // Set deleting state to show loading or handle progress
 
       try {
+        const serverUrl = process.env.SERVER_URL
+          ? process.env.SERVER_URL
+          : `http://localhost:${process.env.PORT}`;
+
         // Call the delete API endpoint to remove the account
-        const response = await fetch(
-          `http://localhost:${process.env.PORT}/api/users/delete`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
-            },
+        const response = await fetch(`${serverUrl}/api/users/delete`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-        );
+        });
 
         if (response.ok) {
           // Handle successful deletion (e.g., log out the user, show success message)
@@ -92,14 +93,15 @@ export default class ProfileController {
     };
 
     try {
-      const response = await fetch(
-        `http://localhost:${process.env.PORT}/api/users/update`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedUser),
-        },
-      );
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
+      const response = await fetch(`${serverUrl}/api/users/update`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedUser),
+      });
 
       const data = await response.json();
 
@@ -153,14 +155,16 @@ export default class ProfileController {
     try {
       console.log("entered try");
       console.log(updatedUser);
-      const response = await fetch(
-        `http://localhost:${process.env.PORT}/api/auth/change-password`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(updatedUser),
-        },
-      );
+
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
+      const response = await fetch(`${serverUrl}/api/auth/change-password`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedUser),
+      });
 
       if (!response.ok) {
         const errorData = await response.json(); // Parse error message from response

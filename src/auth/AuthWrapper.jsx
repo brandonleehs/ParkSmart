@@ -13,7 +13,13 @@ export function AuthWrapper({ children }) {
     const token = localStorage.getItem("token");
     if (token) {
       // You can send the token to your backend to validate the session
-      fetch(`http://localhost:${process.env.PORT}/api/auth/verify`, {
+
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
+      console.log(serverUrl);
+      fetch(`${serverUrl}/api/auth/verify`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in request headers

@@ -9,7 +9,12 @@ export default defineConfig(({ mode }) => {
     define: {
       "process.env.ONEMAP_API_KEY": JSON.stringify(env.ONEMAP_API_KEY),
       "process.env.PORT": JSON.stringify(env.PORT),
+      "process.env.SERVER_URL": JSON.stringify(env.SERVER_URL),
     },
     plugins: [react(), tailwindcss()],
+    build: {
+      outDir: "./dist",
+      emptyOutDir: true,
+    },
   };
 });

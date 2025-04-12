@@ -20,8 +20,12 @@ export default function Forum() {
 
   useEffect(() => {
     // Fetch posts from the backend
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .get(`http://localhost:${process.env.PORT}/api/posts`)
+      .get(`${serverUrl}/api/posts`)
       .then((res) => setPosts(res.data))
       .catch((err) => console.log(err));
   }, []);

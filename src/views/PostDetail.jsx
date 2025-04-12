@@ -34,8 +34,12 @@ export default function PostDetail() {
 
   useEffect(() => {
     // Fetch the specific post by its ID
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .get(`http://localhost:${process.env.PORT}/api/posts/${id}`)
+      .get(`${serverUrl}/api/posts/${id}`)
       .then((res) => {
         setPost(res.data);
         setTitle(res.data.title);
@@ -62,8 +66,12 @@ export default function PostDetail() {
       return;
     }
     // Post the new comment to the backend
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .post(`http://localhost:${process.env.PORT}/api/posts/${id}/comments`, {
+      .post(`${serverUrl}/api/posts/${id}/comments`, {
         username: user.username, // Include the logged-in user's username
         text: comment,
       })
@@ -96,8 +104,12 @@ export default function PostDetail() {
       formData.append("image", image); // Send the compressed file
     }
 
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .put(`http://localhost:${process.env.PORT}/api/posts/${id}`, formData, {
+      .put(`${serverUrl}/api/posts/${id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((res) => {
@@ -118,8 +130,12 @@ export default function PostDetail() {
     const confirmDelete = window.confirm(t("forum__confirmDelete"));
     if (confirmDelete) {
       // Delete the post from the backend
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
       axios
-        .patch(`http://localhost:${process.env.PORT}/api/posts/${id}`, {
+        .patch(`${serverUrl}/api/posts/${id}`, {
           deleted: true,
         })
         .then(() => {
@@ -154,13 +170,14 @@ export default function PostDetail() {
     }
 
     // Send the updated comment to the backend
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .put(
-        `http://localhost:${process.env.PORT}/api/posts/${id}/comments/${commentId}`,
-        {
-          text: editedCommentText,
-        },
-      )
+      .put(`${serverUrl}/api/posts/${id}/comments/${commentId}`, {
+        text: editedCommentText,
+      })
       .then((res) => {
         // After successfully updating the comment, update the UI
         setPost((prevPost) => ({
@@ -190,10 +207,12 @@ export default function PostDetail() {
     const confirmDelete = window.confirm(t("forum__confirmDeleteComment"));
     if (confirmDelete) {
       // Delete the comment from the backend
+      const serverUrl = process.env.SERVER_URL
+        ? process.env.SERVER_URL
+        : `http://localhost:${process.env.PORT}`;
+
       axios
-        .delete(
-          `http://localhost:${process.env.PORT}/api/posts/${id}/comments/${commentId}`,
-        )
+        .delete(`${serverUrl}/api/posts/${id}/comments/${commentId}`)
         .then(() => {
           // After successfully deleting the comment, update the comments array
           setPost((prevPost) => ({
@@ -210,8 +229,12 @@ export default function PostDetail() {
       alert(t("forum__pleaseProvideReportReason"));
       return;
     }
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .post(`http://localhost:${process.env.PORT}/api/posts/${id}/report`, {
+      .post(`${serverUrl}/api/posts/${id}/report`, {
         username: user.username,
         report: reportText,
       })
@@ -231,14 +254,15 @@ export default function PostDetail() {
       alert(t("forum__pleaseProvideReportReason"));
       return;
     }
+    const serverUrl = process.env.SERVER_URL
+      ? process.env.SERVER_URL
+      : `http://localhost:${process.env.PORT}`;
+
     axios
-      .post(
-        `http://localhost:${process.env.PORT}/api/posts/${id}/comments/${commentId}/report`,
-        {
-          username: user.username,
-          report: reportText,
-        },
-      )
+      .post(`${serverUrl}/api/posts/${id}/comments/${commentId}/report`, {
+        username: user.username,
+        report: reportText,
+      })
       .then((res) => {
         alert(t("forum__successfulCommentReport"));
         setReportingCommentId(null); // Hide the report box
