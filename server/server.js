@@ -50,8 +50,10 @@ app.use(express.json());
 // Configure cors
 app.use(
   cors({
-    origin: "http://localhost:5173",
-    methods: "GET,POST,DELETE,PUT",
+    origin: process.env.FRONTEND_URL
+      ? process.env.FRONTEND_URL
+      : "http://localhost:5173",
+    methods: "GET,POST,DELETE,PUT,PATCH",
     credentials: true, // Allow credentials like cookies
   }),
 );
