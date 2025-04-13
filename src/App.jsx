@@ -10,15 +10,22 @@ import Index from "./views/Index";
 import SearchPage from "./views/SearchPage";
 import LoadingPage from "./views/LoadingPage";
 import PostDetail from "./views/PostDetail";
-// import EditPost from "./views/EditPost";
 import FeedbackPage from "./views/FeedbackPage";
 import AdminDashboard from "./views/AdminDashboard";
 import ProfilePage from "./views/ProfilePage";
 import LicensePage from "./views/LicensePage";
 import Forum from "./views/Forum";
 import About from "./views/About";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    // Power up backend
+    fetch("https://parksmart-backend.onrender.com/").finally(() => {
+      console.log("Pinged backend!");
+    });
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",

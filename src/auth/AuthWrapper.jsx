@@ -10,21 +10,6 @@ export function AuthWrapper({ children }) {
 
   // Check if there's a valid token saved in localStorage to determine the authenticated user
   useEffect(() => {
-    // power up backend
-    fetch("https://parksmart-backend.onrender.com/")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Network response was not ok " + response.statusText);
-        }
-        return response.json(); // or response.text() depending on the API response
-      })
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-
     const token = localStorage.getItem("token");
     if (token) {
       // You can send the token to your backend to validate the session
