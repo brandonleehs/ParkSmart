@@ -16,19 +16,30 @@ export default function Forum() {
   const navigate = useNavigate(); // For navigation after successful post
   const { user } = useContext(AuthContext);
   const { t } = useTranslation();
+  const [tick, setTick] = useState(0);
 
   useEffect(() => {
-    console.log("ran", process.env.SERVER_URL);
     // Fetch posts from the backend
     const serverUrl = process.env.SERVER_URL
       ? process.env.SERVER_URL
       : `http://localhost:${process.env.PORT}`;
 
-    console.log(serverUrl);
-    axios
-      .get(`${serverUrl}/api/posts`)
-      .then((res) => setPosts(res.data))
-      .catch((err) => console.log(err));
+    fetch(`${serverUrl}/api/posts`, { signal: AbortSignal.timeout(3000) })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setPosts(data))
+      .catch((err) => {
+        if (err.name === "AbortError") {
+          console.log("Server booting up...");
+          setTick((prev) => prev + 1); // This triggers a rerender
+        } else {
+          console.log(err);
+        }
+      });
   }, []);
 
   const forumController = new ForumController();
