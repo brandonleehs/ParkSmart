@@ -16,19 +16,8 @@ import ProfilePage from "./views/ProfilePage";
 import LicensePage from "./views/LicensePage";
 import Forum from "./views/Forum";
 import About from "./views/About";
-import { useEffect, useState } from "react";
 
 function App() {
-  const [keyValue, setKeyValue] = useState(0);
-
-  useEffect(() => {
-    // Power up backend
-    fetch("https://parksmart-backend.onrender.com/").finally(() => {
-      console.log("Pinged backend!");
-      setKeyValue(keyValue + 1);
-    });
-  }, []);
-
   const router = createBrowserRouter([
     {
       path: "/",

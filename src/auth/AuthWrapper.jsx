@@ -13,7 +13,6 @@ export function AuthWrapper({ children }) {
     const token = localStorage.getItem("token");
     if (token) {
       // You can send the token to your backend to validate the session
-
       const serverUrl = process.env.SERVER_URL
         ? process.env.SERVER_URL
         : `http://localhost:${process.env.PORT}`;
@@ -23,6 +22,7 @@ export function AuthWrapper({ children }) {
         headers: {
           Authorization: `Bearer ${token}`, // Include the token in request headers
         },
+        signal: AbortSignal.timeout(1000),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -33,9 +33,14 @@ export function AuthWrapper({ children }) {
           }
         })
         .catch((error) => {
-          console.error("Error verifying token:", error);
-          localStorage.removeItem("token");
-          setUser(null);
+          if (error.name === "AbortError") {
+            console.log("Server booting up...");
+            authorizeUser();
+          } else {
+            console.error("Error verifying token:", error);
+            localStorage.removeItem("token");
+            setUser(null);
+          }
         })
         .finally(() => {
           setLoading(false);
@@ -54,4 +59,33 @@ export function AuthWrapper({ children }) {
       {children}
     </AuthContext.Provider>
   );
+}
+
+function authorizeUser() {
+  const serverUrl = process.env.SERVER_URL
+    ? process.env.SERVER_URL
+    : `http://localhost:${process.env.PORT}`;
+
+  fetch(`${serverUrl}/api/auth/verify`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`, // Include the token in request headers
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.user) {
+        setUser(data.user); // Set user if the token is valid
+      } else {
+        throw new Error("Invalid token!");
+      }
+    })
+    .catch((error) => {
+      console.error("Error verifying token:", error);
+      localStorage.removeItem("token");
+      setUser(null);
+    })
+    .finally(() => {
+      setLoading(false);
+    });
 }
