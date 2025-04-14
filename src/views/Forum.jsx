@@ -24,7 +24,7 @@ export default function Forum() {
       ? process.env.SERVER_URL
       : `http://localhost:${process.env.PORT}`;
 
-    fetch(`${serverUrl}/api/posts`, { signal: AbortSignal.timeout(3000) })
+    fetch(`${serverUrl}/api/posts`, { signal: AbortSignal.timeout(5000) })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
