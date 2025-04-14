@@ -40,7 +40,7 @@ export default function Forum() {
           console.log(err);
         }
       });
-  }, []);
+  }, [tick]);
 
   const forumController = new ForumController();
 
