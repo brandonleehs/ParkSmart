@@ -67,8 +67,7 @@ function authenticateOneMap() {
     process.env.ONEMAP_EXPIRY_TIMESTAMP &&
     parseInt(process.env.ONEMAP_EXPIRY_TIMESTAMP) - currentDate < 10
   ) {
-    console.log(process.env.ONEMAP_EXPIRY_TIMESTAMP, envFilePath);
-    // refreshOneMapToken();
+    refreshOneMapToken();
   }
 }
 // Function to refresh OneMap token
@@ -94,9 +93,13 @@ async function refreshOneMapToken() {
     // Prevent buffering if key is same
     if (data.access_token !== process.env.ONEMAP_API_KEY) {
       console.log("Refreshed OneMap token:", data.access_token);
-      // Update your environment variable or in-memory storage here
-      setEnvValue("ONEMAP_API_KEY", data.access_token);
-      setEnvValue("ONEMAP_EXPIRY_TIMESTAMP", data.expiry_timestamp);
+      if (process.env.FRONTEND_URL) {
+        process.env.ONEMAP_API_KEY = data.access_token;
+        process.ONEMAP_EXPIRY_TIMESTAMP = data.expiry_timestamp;
+      } else {
+        setEnvValue("ONEMAP_API_KEY", data.access_token);
+        setEnvValue("ONEMAP_EXPIRY_TIMESTAMP", data.expiry_timestamp);
+      }
     }
   } catch (error) {
     console.error("Error refreshing OneMap token:", error);
