@@ -16,7 +16,20 @@ export default function Forum() {
   const navigate = useNavigate(); // For navigation after successful post
   const { user } = useContext(AuthContext);
   const { t } = useTranslation();
-  const [tick, setTick] = useState(0);
+
+  function getPosts() {
+    fetch(`${serverUrl}/api/posts`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => setPosts(data))
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   useEffect(() => {
     // Fetch posts from the backend
@@ -35,12 +48,12 @@ export default function Forum() {
       .catch((err) => {
         if (err.name === "AbortError") {
           console.log("Server booting up...");
-          setTick((prev) => prev + 1); // This triggers a rerender
+          getPosts();
         } else {
           console.log(err);
         }
       });
-  }, [tick]);
+  }, []);
 
   const forumController = new ForumController();
 
