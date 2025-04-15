@@ -67,7 +67,8 @@ function authenticateOneMap() {
     process.env.ONEMAP_EXPIRY_TIMESTAMP &&
     parseInt(process.env.ONEMAP_EXPIRY_TIMESTAMP) - currentDate < 10
   ) {
-    refreshOneMapToken();
+    console.log(process.env.ONEMAP_EXPIRY_TIMESTAMP, envFilePath);
+    // refreshOneMapToken();
   }
 }
 // Function to refresh OneMap token
