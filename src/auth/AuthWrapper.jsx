@@ -33,7 +33,7 @@ export function AuthWrapper({ children }) {
           }
         })
         .catch((error) => {
-          if (error.name === "AbortError") {
+          if (error.name === "AbortError" || error.name === "TimeoutError") {
             console.log("Server booting up...");
             authorizeUser();
           } else {

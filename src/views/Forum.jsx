@@ -46,7 +46,7 @@ export default function Forum() {
       })
       .then((data) => setPosts(data))
       .catch((err) => {
-        if (err.name === "AbortError") {
+        if (err.name === "AbortError" || err.name === "TimeoutError") {
           console.log("Server booting up...");
           getPosts();
         } else {
