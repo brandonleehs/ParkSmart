@@ -17,7 +17,7 @@ export default function Forum() {
   const { user } = useContext(AuthContext);
   const { t } = useTranslation();
 
-  function getPosts() {
+  function getPosts(serverUrl) {
     fetch(`${serverUrl}/api/posts`)
       .then((response) => {
         if (!response.ok) {
@@ -48,7 +48,7 @@ export default function Forum() {
       .catch((err) => {
         if (err.name === "AbortError" || err.name === "TimeoutError") {
           console.log("Server booting up...");
-          getPosts();
+          getPosts(serverUrl);
         } else {
           console.log(err);
         }
