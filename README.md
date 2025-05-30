@@ -58,7 +58,7 @@ Our app uses a MongoDB cloud database by default. As a result, you do not need t
 
 If you wish to use your own local database, connect to localhost:27017 in MongoDB Compass and create a new database with the name `sc2006`. You may initialise your first collection as `MyCollection` (the name does not really matter).
 
-If you wish to observe the cloud database, connect to `mongodb+srv://wenrongtan16:7F5vZcLpytTXXl9z@wr.re7utjp.mongodb.net/`. You may then observe the populated data in the cloud database.
+If you wish to observe the cloud database, connect to `YOUR_CLOUD_URI`. You may then observe the populated data in the cloud database.
 
 ### 4. Set up environment variables
 
@@ -66,9 +66,9 @@ If you do not have the .env file in the repository, enter the following commands
 
 ```
 echo LOCAL_MONGO_URI="mongodb://localhost:27017/sc2006" > .env
-echo CLOUD_MONGO_URI="mongodb+srv://wenrongtan16:7F5vZcLpytTXXl9z@wr.re7utjp.mongodb.net/sc2006?retryWrites=true&w=majority" >> .env
-echo ONEMAP_EMAIL="brandon02.lee@gmail.com" >> .env
-echo ONEMAP_PASSWORD="WQ!*PJwF7a#k*@" >> .env
+echo CLOUD_MONGO_URI="YOUR_CLOUD_URI" >> .env
+echo ONEMAP_EMAIL="YOUR_ONEMAP_EMAIL" >> .env
+echo ONEMAP_PASSWORD="YOUR_ONEMAP_PASSWORD" >> .env
 echo JWT_SECRET=123456 >> .env
 echo JWT_EXPIRATION=1h >> .env
 echo PORT=3000 >> .env
